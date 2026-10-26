@@ -1,0 +1,9 @@
+:root { --agri-green: #2e7d32; --agri-light: #f1f8e9; }
+body { background: #fafafa; }
+.bg-agri { background-color: var(--agri-green) !important; }
+.btn-agri { background-color: var(--agri-green); border-color: var(--agri-green); color: #fff; }
+.btn-agri:hover { background-color: #1b5e20; border-color: #1b5e20; color: #fff; }
+.hero { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; padding: 4rem 0; }
+.card-stat .display-6 { color: var(--agri-green); font-weight: 600; }
+.feature-card { transition: transform .15s; height: 100%; }
+.feature-card:hover { transform: translateY(-3px); }
