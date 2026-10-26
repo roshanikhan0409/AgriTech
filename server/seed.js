@@ -1,21 +1,11 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const User = require('./models/User');
 const Resource = require('./models/Resource');
 const Alert = require('./models/Alert');
 
 (async () => {
   await mongoose.connect(process.env.MONGO_URI);
-
-  const users = [
-    { name: 'Admin', email: 'admin@agritech.test', password: 'admin123', role: 'admin' },
-    { name: 'Dr. Expert', email: 'expert@agritech.test', password: 'expert123', role: 'expert' },
-    { name: 'Demo Farmer', email: 'farmer@agritech.test', password: 'farmer123', role: 'farmer' },
-  ];
-  for (const u of users) {
-    if (!(await User.findOne({ email: u.email }))) await User.create(u);
-  }
-
+  
   if (!(await Resource.countDocuments())) {
     await Resource.insertMany([
       { name: 'Wheat Seeds (HD-2967)', category: 'seed', price: 45, unit: 'kg', stock: 500, description: 'High-yield wheat variety' },
@@ -33,7 +23,6 @@ const Alert = require('./models/Alert');
       { title: 'Yellow rust risk in cool, humid weather', type: 'disease', severity: 'medium', crops: ['wheat'], description: 'Look for yellow stripes on leaves.', treatment: 'Use resistant varieties and consult an expert for fungicide advice.' },
     ]);
   }
-
-  console.log('Seed complete.\nAdmin:  admin@agritech.test / admin123\nExpert: expert@agritech.test / expert123\nFarmer: farmer@agritech.test / farmer123');
+  
   await mongoose.disconnect();
 })();
